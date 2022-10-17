@@ -21,11 +21,25 @@ $now=$now+(60*60*24)*10;
 echo $now;
 echo "<br>";
 echo date("西元Y年m月d日 H:i:s l",$now);
+echo "<hr>";
+
+$tomorrow=strtotime("-1 hours");
+echo $tomorrow;
+echo "<br>";
+echo date("Y-m-d H:i:s");
+echo "<br>";
+echo "<br>";
+echo date("Y-m-d H:i:s",$tomorrow);
+echo "<br>";
+/* $t=date("Y-m-d",$tomorrow);
+echo $t;
+echo strtotime($t); */
 ?>
+
 
 <h2>練習</h2>
 <ul>
-    <li><a href="">練習一:</a></li>
+    <li><a href="pra01.php">練習一:計算日期間隔</a></li>
     <li><a href="">練習二:</a></li>
     <li><a href="">練習三:</a></li>
     <li><a href="">練習四:</a></li>
