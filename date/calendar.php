@@ -22,14 +22,19 @@
 <h1>月曆</h1>
 <?php
 $year=date("Y");
-$month=date("n");
-$today=date('j');
+$month=1;
+$today=date("Y-n-j");
 echo "今天是$today 號";
+echo "<br>";
 //echo $year.'-'.$month;
-//$firstDate=$year.'-'.$month.'-1';
-$firstDate=date("Y-10-1");
+$firstDate=$year.'-'.$month.'-1';
+//$firstDate=date("Y-10-1");
 $firstDateWeek=date('N',strtotime($firstDate));
 $monthDays=date("t",strtotime($firstDate));
+$lastDate=$year.'-'.$month.'-'.$monthDays;
+
+echo "本月最後一天是$lastDate 號";
+echo "<br>";
 echo $monthDays;
 echo "<br>";
 echo $firstDate;
@@ -54,36 +59,36 @@ echo $firstDateWeek;
 for($i=1;$i<=7;$i++){
     echo "<tr>";
     for($j=1;$j<=7;$j++){
-        $date=($i-1)*7+$j-($firstDateWeek-1);
- 
+        $date=$year.'-'.$month.'-'.(($i-1)*7+$j-($firstDateWeek-1));
+        //echo $date . '<br>';
         if($i==1){
             if($j>=$firstDateWeek){
                 if($date==$today){
                     echo "<td style='background-color:lightblue'>";
-                    echo $date;
+                    echo date("d",strtotime($date));
                     echo "</td>";
                 }else{
                     echo "<td>";
-                    echo $date;
+                    echo date("d",strtotime($date));
                     echo "</td>";
                 }
             }else{
                 echo "<td></td>";
             }
         }else{
-            if($date==$today){
-                echo "<td style='background:lightblue'>";
-                if($date<=$monthDays){
-                    echo $date;
+           // echo $date ."=> ".strtotime($date)."<=".strtotime($lastDate)."<br>";
+            if(strtotime($date)){
+                if($date==$today){
+                    echo "<td style='background:lightblue'>";
+                        echo date("d",strtotime($date));
+                    echo "</td>";
+                }else{
+                    echo "<td>";
+                    echo date("d",strtotime($date));
+                    echo "</td>";
                 }
-                echo "</td>";
             }else{
-                echo "<td>";
-                if($date<=$monthDays){
-                    echo $date;
-                }
-                echo "</td>";
-
+                echo "<td></td>";
             }
         }
     }
