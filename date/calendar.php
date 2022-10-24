@@ -12,6 +12,10 @@
         td{
             border:1px solid #ccc;
         }
+        td:nth-child(6),
+        td:nth-child(7){
+            background-color: pink;
+        }
     </style>
 </head>
 <body>
@@ -19,9 +23,11 @@
 <?php
 $year=date("Y");
 $month=date("n");
+$today=date('j');
+echo "今天是$today 號";
 //echo $year.'-'.$month;
 //$firstDate=$year.'-'.$month.'-1';
-$firstDate=date("Y-m-1");
+$firstDate=date("Y-10-1");
 $firstDateWeek=date('N',strtotime($firstDate));
 $monthDays=date("t",strtotime($firstDate));
 echo $monthDays;
@@ -48,21 +54,37 @@ echo $firstDateWeek;
 for($i=1;$i<=7;$i++){
     echo "<tr>";
     for($j=1;$j<=7;$j++){
+        $date=($i-1)*7+$j-($firstDateWeek-1);
+ 
         if($i==1){
             if($j>=$firstDateWeek){
-                echo "<td>";
-                echo ($i-1)*7+$j-($firstDateWeek-1);
-                echo "</td>";
+                if($date==$today){
+                    echo "<td style='background-color:lightblue'>";
+                    echo $date;
+                    echo "</td>";
+                }else{
+                    echo "<td>";
+                    echo $date;
+                    echo "</td>";
+                }
             }else{
                 echo "<td></td>";
             }
         }else{
-            $date=($i-1)*7+$j-($firstDateWeek-1);
-            echo "<td>";
-            if($date<=$monthDays){
-                echo $date;
+            if($date==$today){
+                echo "<td style='background:lightblue'>";
+                if($date<=$monthDays){
+                    echo $date;
+                }
+                echo "</td>";
+            }else{
+                echo "<td>";
+                if($date<=$monthDays){
+                    echo $date;
+                }
+                echo "</td>";
+
             }
-            echo "</td>";
         }
     }
     echo "</tr>";
