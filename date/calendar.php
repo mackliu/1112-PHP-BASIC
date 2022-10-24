@@ -22,7 +22,7 @@
 <h1>月曆</h1>
 <?php
 $year=date("Y");
-$month=1;
+$month=6;
 $today=date("Y-n-j");
 echo "今天是$today 號";
 echo "<br>";
@@ -41,6 +41,9 @@ echo $firstDate;
 echo "<br>";
 echo "本月第一天是星期:";
 echo $firstDateWeek;
+echo "<br>";
+$weeks=ceil(($monthDays+($firstDateWeek-1))/7);
+echo "本月一共有".$weeks."周";
 ?>
 
 
@@ -56,7 +59,7 @@ echo $firstDateWeek;
     <td>日</td>
 </tr>
 <?php
-for($i=1;$i<=7;$i++){
+for($i=1;$i<=$weeks;$i++){
     echo "<tr>";
     for($j=1;$j<=7;$j++){
         $date=$year.'-'.$month.'-'.(($i-1)*7+$j-($firstDateWeek-1));
@@ -76,7 +79,7 @@ for($i=1;$i<=7;$i++){
                 echo "<td></td>";
             }
         }else{
-           // echo $date ."=> ".strtotime($date)."<=".strtotime($lastDate)."<br>";
+            //echo $date ."=> ".strtotime($date)."<=".strtotime($lastDate)."<br>";
             if(strtotime($date)){
                 if($date==$today){
                     echo "<td style='background:lightblue'>";
