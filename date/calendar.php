@@ -19,10 +19,16 @@
     </style>
 </head>
 <body>
+<?php
+$sec=strtotime('2022-2-31');
+echo $sec;
+echo "<br>";
+echo date("Y-m-d",$sec);
+?>
 <h1>月曆</h1>
 <?php
 $year=date("Y");
-$month=6;
+$month=10;
 $today=date("Y-n-j");
 echo "今天是$today 號";
 echo "<br>";
@@ -80,7 +86,7 @@ for($i=1;$i<=$weeks;$i++){
             }
         }else{
             //echo $date ."=> ".strtotime($date)."<=".strtotime($lastDate)."<br>";
-            if(strtotime($date)){
+            if(strtotime($date) && date("n",strtotime($date))==$month){
                 if($date==$today){
                     echo "<td style='background:lightblue'>";
                         echo date("d",strtotime($date));
